@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { CiBookmark } from "react-icons/ci";
-const Blog = ({ blog }) => {
-  console.log(blog);
+const Blog = ({ blog, handleBookMark, handleMarkAsRead }) => {
+  //   console.log(blog);
   const {
     cover,
     author_img,
@@ -14,7 +14,7 @@ const Blog = ({ blog }) => {
   return (
     <div>
       <div className="mb-[32px]">
-        <img src={cover} alt="" />
+        <img className="w-full rounded" src={cover} alt="" />
       </div>
       {/*  */}
       <div className="flex justify-between mb-[16px]">
@@ -25,9 +25,13 @@ const Blog = ({ blog }) => {
             <p>{posted_date}</p>
           </div>
         </div>
-        <div className="flex ml-[120px] mr-0">
-          {reading_time} <span className="mx-[4px]">min read</span>{" "}
-          <CiBookmark />
+        <div className="flex justify-center items-center w-[140px]">
+          <p>
+            {reading_time} <span className="mx-[4px]">min read</span>
+          </p>
+          <button onClick={() => handleBookMark(blog)}>
+            <CiBookmark />
+          </button>
         </div>
       </div>
       {/*  */}
@@ -37,15 +41,21 @@ const Blog = ({ blog }) => {
         <p>#{hashtags[1]}</p>
       </div>
       <div className="mb-[38px]">
-        <a className="text-lime-600 underline" href="">
+        <button
+          onClick={() => handleMarkAsRead(reading_time)}
+          className="text-lime-600 underline"
+        >
+          {" "}
           Marks as read
-        </a>
+        </button>
       </div>
     </div>
   );
 };
 Blog.propTypes = {
   blog: PropTypes.array,
+  handleBookMark: PropTypes.func,
+  handleMarkAsRead: PropTypes.func,
 };
 
 export default Blog;
