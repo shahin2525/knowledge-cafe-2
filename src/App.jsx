@@ -11,8 +11,11 @@ function App() {
   const handleBookMark = (data) => {
     setBookMarks([...bookMarks, data]);
   };
-  const handleMarkAsRead = (time) => {
+  const handleMarkAsRead = (time, id) => {
     setReadTime(readTime + time);
+
+    const remaining = bookMarks.filter((bookMark) => bookMark.id !== id);
+    setBookMarks(remaining);
   };
   return (
     <div className="max-w-[1280px] mx-auto my-[10px]">

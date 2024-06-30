@@ -26,7 +26,7 @@ const Bookmarks = ({ bookMarks, readTime }) => {
 };
 
 Bookmarks.propTypes = {
-  bookMarks: PropTypes.array,
+  bookMarks: PropTypes.object,
   readTime: PropTypes.number,
 };
 
